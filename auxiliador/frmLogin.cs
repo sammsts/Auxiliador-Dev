@@ -1,15 +1,10 @@
 using Npgsql;
-using System;
-using System.Data;
-using System.Diagnostics;
-using System.Windows.Forms;
 
 namespace auxiliador
 {
     public partial class frmLogin : Form
     {
-        private string connectionString = "User ID=postgres;Password=123456;Host=localhost;Port=5433;Database=auxiliador_dev;"; //Máquina Sam
-
+        Database connection = new Database();
 
         public frmLogin()
         {
@@ -20,15 +15,14 @@ namespace auxiliador
         {
             try
             {
-                using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+                using (NpgsqlConnection db = connection.AbrirConexao())
                 {
-                    connection.Open();
+                    db.Open();
                     return true; //Se a conexão for bem-sucedida, retorna true
-                }
+                }   
             }
             catch (Exception ex)
             {
-                //Falha na conexão
                 Console.WriteLine("Erro ao conectar ao banco de dados: " + ex.Message);
                 return false;
             }
@@ -66,10 +60,10 @@ namespace auxiliador
         {
             string caminhoDoProjeto = string.Empty;
 
-            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            using (NpgsqlConnection db = connection.AbrirConexao())
             {
-                connection.Open();
-                using (NpgsqlCommand command = new NpgsqlCommand("SELECT pra_caminhogespam FROM pra_parametros WHERE usu_idusuario = @Id", connection))
+                db.Open();
+                using (NpgsqlCommand command = new NpgsqlCommand("SELECT pra_caminhogespam FROM pra_parametros WHERE usu_idusuario = @Id", db))
                 {
                     command.Parameters.AddWithValue("Id", 1); // Substitua 1 pelo ID do usuário logado, ou outro critério de busca
                     using (NpgsqlDataReader reader = command.ExecuteReader())

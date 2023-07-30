@@ -91,6 +91,7 @@
             btnSignin.TabIndex = 21;
             btnSignin.Text = "Sign-In";
             btnSignin.UseVisualStyleBackColor = true;
+            btnSignin.Click += btnSignin_Click;
             // 
             // txtboxSenha
             // 
