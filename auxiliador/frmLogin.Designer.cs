@@ -30,56 +30,62 @@
         {
             btnLogin = new Button();
             linksignin = new LinkLabel();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            txtboxUsuarioLogin = new TextBox();
+            txtboxSenhaLogin = new TextBox();
             SuspendLayout();
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(350, 310);
+            btnLogin.Location = new Point(306, 232);
+            btnLogin.Margin = new Padding(3, 2, 3, 2);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(75, 31);
+            btnLogin.Size = new Size(66, 23);
             btnLogin.TabIndex = 4;
             btnLogin.Text = "Login";
+            btnLogin.Click += btnLogin_Click;
             // 
             // linksignin
             // 
             linksignin.AutoSize = true;
-            linksignin.Location = new Point(360, 401);
+            linksignin.Location = new Point(315, 301);
             linksignin.Name = "linksignin";
-            linksignin.Size = new Size(56, 20);
+            linksignin.Size = new Size(45, 15);
             linksignin.TabIndex = 1;
             linksignin.TabStop = true;
             linksignin.Text = "Sign-in";
             linksignin.Click += linksignin_Click;
             // 
-            // textBox1
+            // txtboxUsuarioLogin
             // 
-            textBox1.Location = new Point(290, 140);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(207, 27);
-            textBox1.TabIndex = 2;
-            textBox1.Text = "User";
+            txtboxUsuarioLogin.Location = new Point(254, 105);
+            txtboxUsuarioLogin.Margin = new Padding(3, 2, 3, 2);
+            txtboxUsuarioLogin.Name = "txtboxUsuarioLogin";
+            txtboxUsuarioLogin.Size = new Size(182, 23);
+            txtboxUsuarioLogin.TabIndex = 2;
+            txtboxUsuarioLogin.Text = "User";
             // 
-            // textBox2
+            // txtboxSenhaLogin
             // 
-            textBox2.Location = new Point(290, 173);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(207, 27);
-            textBox2.TabIndex = 3;
-            textBox2.Text = "Password";
+            txtboxSenhaLogin.Location = new Point(254, 130);
+            txtboxSenhaLogin.Margin = new Padding(3, 2, 3, 2);
+            txtboxSenhaLogin.Name = "txtboxSenhaLogin";
+            txtboxSenhaLogin.Size = new Size(182, 23);
+            txtboxSenhaLogin.TabIndex = 3;
+            txtboxSenhaLogin.Text = "Password";
             // 
             // frmLogin
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            ClientSize = new Size(700, 338);
+            Controls.Add(txtboxSenhaLogin);
+            Controls.Add(txtboxUsuarioLogin);
             Controls.Add(linksignin);
             Controls.Add(btnLogin);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "frmLogin";
             Text = "The top one Brazil auxiliador";
+            Load += frmLogin_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -88,7 +94,7 @@
 
         private Button btnLogin;
         private LinkLabel linksignin;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox txtboxUsuarioLogin;
+        private TextBox txtboxSenhaLogin;
     }
 }
