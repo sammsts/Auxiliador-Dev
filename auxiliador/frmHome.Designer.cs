@@ -37,6 +37,7 @@
             progressBarNpmStart = new ProgressBar();
             progressBarNpmWatch = new ProgressBar();
             progressBarNpmBuild = new ProgressBar();
+            backgroundWorkerProgress = new System.ComponentModel.BackgroundWorker();
             SuspendLayout();
             // 
             // tvHome
@@ -107,6 +108,12 @@
             progressBarNpmBuild.TabIndex = 6;
             progressBarNpmBuild.Visible = false;
             // 
+            // backgroundWorkerProgress
+            // 
+            backgroundWorkerProgress.DoWork += backgroundWorkerProgress_DoWork;
+            backgroundWorkerProgress.ProgressChanged += backgroundWorkerProgress_ProgressChanged;
+            backgroundWorkerProgress.RunWorkerCompleted += backgroundWorkerProgress_RunWorkerCompleted;
+            // 
             // frmHome
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -133,5 +140,6 @@
         private ProgressBar progressBarNpmStart;
         private ProgressBar progressBarNpmWatch;
         private ProgressBar progressBarNpmBuild;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerProgress;
     }
 }
