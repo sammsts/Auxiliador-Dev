@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace auxiliador
 {
@@ -37,6 +38,8 @@ namespace auxiliador
 
         private void btnNpmRunStart_Click(object sender, EventArgs e)
         {
+            progressBarNpmStart.Visible = true;
+            btnNpmRunStart.Visible = false;
             string caminhoDoProjeto = _auxiliadorRepository.BuscarCaminhoGespam(Session.Active_Session.idUsuario);
 
             if (!string.IsNullOrEmpty(caminhoDoProjeto))
@@ -61,6 +64,14 @@ namespace auxiliador
 
                 process.StandardInput.WriteLine($"cd {caminhoDoProjeto}");
                 process.StandardInput.WriteLine("npm run start");
+
+                for (int i = 0; i <= 100; i++)
+                {
+                    progressBarNpmStart.Value = i;
+
+                    Application.DoEvents();
+                }
+
 
                 process.WaitForExit();
 

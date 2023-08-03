@@ -34,6 +34,9 @@
             btnNpmRunWatch = new Button();
             btnNpmRunBuild = new Button();
             btnNpmRunStart = new Button();
+            progressBarNpmStart = new ProgressBar();
+            progressBarNpmWatch = new ProgressBar();
+            progressBarNpmBuild = new ProgressBar();
             SuspendLayout();
             // 
             // tvHome
@@ -67,6 +70,7 @@
             btnNpmRunBuild.TabIndex = 2;
             btnNpmRunBuild.Text = "Npm run build";
             btnNpmRunBuild.UseVisualStyleBackColor = true;
+            btnNpmRunBuild.Visible = false;
             // 
             // btnNpmRunStart
             // 
@@ -76,13 +80,41 @@
             btnNpmRunStart.TabIndex = 3;
             btnNpmRunStart.Text = "Npm run start";
             btnNpmRunStart.UseVisualStyleBackColor = true;
+            btnNpmRunStart.Visible = false;
             btnNpmRunStart.Click += btnNpmRunStart_Click;
+            // 
+            // progressBarNpmStart
+            // 
+            progressBarNpmStart.Location = new Point(438, 93);
+            progressBarNpmStart.Name = "progressBarNpmStart";
+            progressBarNpmStart.Size = new Size(125, 29);
+            progressBarNpmStart.TabIndex = 4;
+            progressBarNpmStart.Visible = false;
+            // 
+            // progressBarNpmWatch
+            // 
+            progressBarNpmWatch.Location = new Point(438, 151);
+            progressBarNpmWatch.Name = "progressBarNpmWatch";
+            progressBarNpmWatch.Size = new Size(125, 29);
+            progressBarNpmWatch.TabIndex = 5;
+            progressBarNpmWatch.Visible = false;
+            // 
+            // progressBarNpmBuild
+            // 
+            progressBarNpmBuild.Location = new Point(438, 212);
+            progressBarNpmBuild.Name = "progressBarNpmBuild";
+            progressBarNpmBuild.Size = new Size(125, 29);
+            progressBarNpmBuild.TabIndex = 6;
+            progressBarNpmBuild.Visible = false;
             // 
             // frmHome
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(progressBarNpmBuild);
+            Controls.Add(progressBarNpmWatch);
+            Controls.Add(progressBarNpmStart);
             Controls.Add(btnNpmRunStart);
             Controls.Add(btnNpmRunBuild);
             Controls.Add(btnNpmRunWatch);
@@ -98,5 +130,8 @@
         private Button btnNpmRunWatch;
         private Button btnNpmRunBuild;
         private Button btnNpmRunStart;
+        private ProgressBar progressBarNpmStart;
+        private ProgressBar progressBarNpmWatch;
+        private ProgressBar progressBarNpmBuild;
     }
 }
