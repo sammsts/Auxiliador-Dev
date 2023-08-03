@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace auxiliador
 {
@@ -36,21 +38,14 @@ namespace auxiliador
             }
         }
 
-        private void btnNpmRunStart_Click(object sender, EventArgs e)
+        private async void btnNpmRunStart_Click(object sender, EventArgs e)
         {
             progressBarNpmStart.Visible = true;
             btnNpmRunStart.Visible = false;
-
-            backgroundWorkerProgress.RunWorkerAsync();
-        }
-
-        private void backgroundWorkerProgress_DoWork(object sender, DoWorkEventArgs e)
-        {
             string caminhoDoProjeto = _auxiliadorRepository.BuscarCaminhoGespam(Session.Active_Session.idUsuario);
 
             if (!string.IsNullOrEmpty(caminhoDoProjeto))
             {
-                //Configurações para executar o prompt de comando
                 ProcessStartInfo startInfo = new ProcessStartInfo
                 {
                     FileName = "cmd.exe",
@@ -66,9 +61,23 @@ namespace auxiliador
                     StartInfo = startInfo
                 };
 
+                process.OutputDataReceived += (s, outputDataEvent) =>
+                {
+                    if (!string.IsNullOrEmpty(outputDataEvent.Data))
+                    {
+                        if (outputDataEvent.Data.Contains("progresso"))
+                        {
+                            backgroundWorkerProgress.ReportProgress(50);
+                        }
+                    }
+                };
+
                 process.Start();
                 process.StandardInput.WriteLine($"cd {caminhoDoProjeto}");
-                process.StandardInput.WriteLine("npm run start");
+                process.StandardInput.WriteLine("npm run watch");
+
+                await Task.Delay(3000);
+                process.StandardInput.WriteLine("");
 
                 process.WaitForExit();
 
@@ -78,17 +87,6 @@ namespace auxiliador
             {
                 MessageBox.Show("O caminho do projeto não foi encontrado no banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void backgroundWorkerProgress_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            progressBarNpmStart.Value = e.ProgressPercentage;
-        }
-
-        private void backgroundWorkerProgress_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            progressBarNpmStart.Visible = false;
-            btnNpmRunStart.Visible = true;
         }
     }
 }
