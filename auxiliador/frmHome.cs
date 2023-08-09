@@ -24,69 +24,40 @@ namespace auxiliador
 
         private void tvHome_Click(object sender, EventArgs e)
         {
-            if (tvHome.SelectedNode.Text == "Npm's")
+            if (tvHome.SelectedNode.Text == "Atualizar demo")
             {
-                btnNpmRunStart.Visible = true;
-                btnNpmRunWatch.Visible = true;
-                btnNpmRunBuild.Visible = true;
+                btnGerarPacoteDemo.Visible = true;
             }
             else
             {
-                btnNpmRunStart.Visible = false;
-                btnNpmRunWatch.Visible = false;
-                btnNpmRunBuild.Visible = false;
+                btnGerarPacoteDemo.Visible = false;
             }
         }
 
-        private async void btnNpmRunStart_Click(object sender, EventArgs e)
+        private void btnGerarPacoteDemo_Click(object sender, EventArgs e)
         {
-            progressBarNpmStart.Visible = true;
-            btnNpmRunStart.Visible = false;
-            string caminhoDoProjeto = _auxiliadorRepository.BuscarCaminhoGespam(Session.Active_Session.idUsuario);
+            string executablePath = Application.ExecutablePath;
+            string binDirectory = Path.GetDirectoryName(executablePath);
+            string releaseDirectory = Path.Combine(binDirectory, "Release");
 
-            if (!string.IsNullOrEmpty(caminhoDoProjeto))
+            if (Directory.Exists(releaseDirectory))
             {
-                ProcessStartInfo startInfo = new ProcessStartInfo
+                try
                 {
-                    FileName = "cmd.exe",
-                    RedirectStandardInput = true,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true
-                };
-
-                Process process = new Process
+                    Directory.Delete(releaseDirectory, true); // true permite excluir subdiretórios e arquivos
+                    MessageBox.Show("Pasta 'Release' foi deletada com sucesso.");
+                }
+                catch (Exception ex)
                 {
-                    StartInfo = startInfo
-                };
-
-                process.OutputDataReceived += (s, outputDataEvent) =>
-                {
-                    if (!string.IsNullOrEmpty(outputDataEvent.Data))
-                    {
-                        if (outputDataEvent.Data.Contains("progresso"))
-                        {
-                            backgroundWorkerProgress.ReportProgress(50);
-                        }
-                    }
-                };
-
-                process.Start();
-                process.StandardInput.WriteLine($"cd {caminhoDoProjeto}");
-                process.StandardInput.WriteLine("npm run watch");
-
-                await Task.Delay(3000);
-                process.StandardInput.WriteLine("");
-
-                process.WaitForExit();
-
-                process.Close();
+                    MessageBox.Show("Erro ao deletar a pasta 'Release': " + ex.Message);
+                }
             }
             else
             {
-                MessageBox.Show("O caminho do projeto não foi encontrado no banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Pasta 'Release' não encontrada.");
             }
+
+
         }
     }
 }

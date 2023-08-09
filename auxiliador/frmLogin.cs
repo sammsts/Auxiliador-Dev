@@ -99,11 +99,7 @@ namespace auxiliador
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            if (TestarConexao())
-            {
-                MessageBox.Show("Conexão bem sucedida!!!");
-            }
-            else
+            if (!TestarConexao())
             {
                 MessageBox.Show("A conexão com o banco de dados falhou!!!");
             }
