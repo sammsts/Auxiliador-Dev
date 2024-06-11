@@ -36,26 +36,26 @@
             // 
             // txtboxCaminhoGespam
             // 
-            txtboxCaminhoGespam.Location = new Point(49, 67);
+            txtboxCaminhoGespam.Location = new Point(43, 50);
+            txtboxCaminhoGespam.Margin = new Padding(3, 2, 3, 2);
             txtboxCaminhoGespam.Name = "txtboxCaminhoGespam";
-            txtboxCaminhoGespam.Size = new Size(217, 27);
+            txtboxCaminhoGespam.Size = new Size(190, 23);
             txtboxCaminhoGespam.TabIndex = 0;
             // 
             // lblCaminhoGespam
             // 
             lblCaminhoGespam.AutoSize = true;
-            lblCaminhoGespam.Location = new Point(271, 69);
+            lblCaminhoGespam.Location = new Point(237, 52);
             lblCaminhoGespam.Name = "lblCaminhoGespam";
-            lblCaminhoGespam.Size = new Size(254, 20);
+            lblCaminhoGespam.Size = new Size(203, 15);
             lblCaminhoGespam.TabIndex = 1;
             lblCaminhoGespam.Text = "< Informe o caminho do seu gespam";
             // 
             // btnSalvarParametros
             // 
-            btnSalvarParametros.Location = new Point(351, 379);
-            btnSalvarParametros.Margin = new Padding(3, 4, 3, 4);
+            btnSalvarParametros.Location = new Point(307, 284);
             btnSalvarParametros.Name = "btnSalvarParametros";
-            btnSalvarParametros.Size = new Size(86, 31);
+            btnSalvarParametros.Size = new Size(75, 23);
             btnSalvarParametros.TabIndex = 2;
             btnSalvarParametros.Text = "Salvar";
             btnSalvarParametros.UseVisualStyleBackColor = true;
@@ -64,9 +64,9 @@
             // linkHome
             // 
             linkHome.AutoSize = true;
-            linkHome.Location = new Point(700, 20);
+            linkHome.Location = new Point(612, 15);
             linkHome.Name = "linkHome";
-            linkHome.Size = new Size(50, 20);
+            linkHome.Size = new Size(37, 15);
             linkHome.TabIndex = 3;
             linkHome.TabStop = true;
             linkHome.Text = "Home";
@@ -74,13 +74,14 @@
             // 
             // frmParametros
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 451);
+            ClientSize = new Size(700, 338);
             Controls.Add(linkHome);
             Controls.Add(btnSalvarParametros);
             Controls.Add(lblCaminhoGespam);
             Controls.Add(txtboxCaminhoGespam);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "frmParametros";
             Text = "Parâmetros";
             ResumeLayout(false);

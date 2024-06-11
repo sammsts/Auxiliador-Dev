@@ -29,6 +29,8 @@ namespace auxiliador
                         {
                             MessageBox.Show("Parâmetros inseridos com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             txtboxCaminhoGespam.ResetText();
+                            _frmHome.Show();
+                            this.Close();
                         }
                         else
                         {

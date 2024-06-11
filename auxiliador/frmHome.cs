@@ -11,12 +11,14 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using Npgsql;
 
 namespace auxiliador
 {
     public partial class frmHome : Form
     {
         AuxiliadorRepository _auxiliadorRepository = new AuxiliadorRepository();
+        Database connection = new Database();
         public frmHome()
         {
             InitializeComponent();
@@ -36,8 +38,10 @@ namespace auxiliador
 
         private void btnGerarPacoteDemo_Click(object sender, EventArgs e)
         {
-            string executablePath = Application.ExecutablePath;
-            string binDirectory = Path.GetDirectoryName(executablePath);
+            Pra_Parametros pra_parametros = BuscaParametroGespam();
+
+            string executablePath = pra_parametros.pra_caminhogespam.Trim();
+            string binDirectory = Path.Combine(executablePath, "bin");
             string releaseDirectory = Path.Combine(binDirectory, "Release");
 
             if (Directory.Exists(releaseDirectory))
@@ -56,8 +60,32 @@ namespace auxiliador
             {
                 MessageBox.Show("Pasta 'Release' não encontrada.");
             }
+        }
 
+        private Pra_Parametros BuscaParametroGespam()
+        {
+            Pra_Parametros pra_parametros = new Pra_Parametros();
 
+            using (NpgsqlConnection db = connection.AbrirConexao())
+            {
+                using (NpgsqlCommand command = new NpgsqlCommand($@"SELECT pra_id, usu_idusuario, pra_caminhogespam FROM pra_parametros WHERE usu_idusuario = {Session.Active_Session.idUsuario}", db))
+                {
+                    using (NpgsqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            pra_parametros = new Pra_Parametros
+                            {
+                                pra_id = reader.GetInt32(reader.GetOrdinal("pra_id")),
+                                usu_idusuario = reader.GetInt32(reader.GetOrdinal("usu_idusuario")),
+                                pra_caminhogespam = reader.GetString(reader.GetOrdinal("pra_caminhogespam"))
+                            };
+                        }
+                    }
+                }
+            }
+
+            return pra_parametros;
         }
     }
 }

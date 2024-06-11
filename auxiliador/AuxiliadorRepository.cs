@@ -12,7 +12,7 @@ namespace auxiliador
             {
                 using (NpgsqlConnection db = connection.AbrirConexao())
                 {
-                    string sql = "SELECT usu_idusuario FROM usu_usuarios WHERE usu_login = @usuario";
+                    string sql = "SELECT usu_id FROM usu_usuarios WHERE usu_login = @usuario";
                     using (NpgsqlCommand command = new NpgsqlCommand(sql, db))
                     {
                         command.Parameters.AddWithValue("@usuario", usuario);
@@ -20,7 +20,7 @@ namespace auxiliador
                         {
                             if (reader.Read())
                             {
-                                int Id = Convert.ToInt16(reader["usu_idusuario"]);
+                                int Id = Convert.ToInt16(reader["usu_id"]);
                                 return Id;
                             }
                             return 0;

@@ -47,7 +47,6 @@ namespace auxiliador
                                 string loginDb = reader["usu_login"].ToString();
                                 string senhaDb = reader["usu_senha"].ToString();
 
-                                // Faça a validação aqui, comparando o login e a senha com os dados inseridos pelo usuário
                                 if (usuario == loginDb && senha == senhaDb)
                                 {
                                     return true;

@@ -6,8 +6,11 @@ public class Database
 
     public Database()
     {
-        // Defina aqui a string de conexão
-        connectionString = "User ID=postgres;Password=123456;Host=localhost;Port=5432;Database=postgres;"; //Máquina Sam not
+#if !DEBUG
+        connectionString = "User ID=giqkhphf;Password=33R_MCsErR3u6AoWZ2xiKA9nhjiCz1Qc;Host=motty.db.elephantsql.com;Port=5432;Database=giqkhphf;";
+#else
+        connectionString = "User ID=postgres;Password=postgre;Host=localhost;Port=5434;Database=AuxiliadorDevLocal;"; //Máquina Sam not
+#endif
     }
 
     public NpgsqlConnection AbrirConexao()
