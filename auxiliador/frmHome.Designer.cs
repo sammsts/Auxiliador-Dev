@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             TreeNode treeNode1 = new TreeNode("Atualizar demo");
-            TreeNode treeNode2 = new TreeNode("Desenvolvimento", new TreeNode[] { treeNode1 });
+            TreeNode treeNode2 = new TreeNode("Parâmetros");
+            TreeNode treeNode3 = new TreeNode("Desenvolvimento", new TreeNode[] { treeNode1, treeNode2 });
             tvHome = new TreeView();
             btnGerarPacoteDemo = new Button();
             backgroundWorkerProgress = new System.ComponentModel.BackgroundWorker();
@@ -43,10 +44,14 @@
             tvHome.Margin = new Padding(3, 2, 3, 2);
             tvHome.Name = "tvHome";
             treeNode1.Name = "";
+            treeNode1.Tag = "AtualizarDemo";
             treeNode1.Text = "Atualizar demo";
-            treeNode2.Name = "";
-            treeNode2.Text = "Desenvolvimento";
-            tvHome.Nodes.AddRange(new TreeNode[] { treeNode2 });
+            treeNode2.Name = "NoParametro";
+            treeNode2.Tag = "Parametros";
+            treeNode2.Text = "Parâmetros";
+            treeNode3.Name = "";
+            treeNode3.Text = "Desenvolvimento";
+            tvHome.Nodes.AddRange(new TreeNode[] { treeNode3 });
             tvHome.Size = new Size(166, 338);
             tvHome.TabIndex = 0;
             tvHome.Click += tvHome_Click;

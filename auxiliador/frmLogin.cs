@@ -20,7 +20,7 @@ namespace auxiliador
             {
                 using (NpgsqlConnection db = connection.AbrirConexao())
                 {
-                    return true; //Se a conexão for bem-sucedida, retorna true
+                    return true;
                 }
             }
             catch (Exception ex)
@@ -72,7 +72,7 @@ namespace auxiliador
         }
         private bool ExisteParametro(int idUsuario)
         {
-            try 
+            try
             {
                 using (NpgsqlConnection db = connection.AbrirConexao())
                 {

@@ -17,13 +17,28 @@ namespace auxiliador
 
         private void tvHome_Click(object sender, EventArgs e)
         {
-            if (tvHome.SelectedNode.Text == "Atualizar demo")
+            if (tvHome.SelectedNode != null)
             {
-                btnGerarPacoteDemo.Visible = true;
-            }
-            else
-            {
-                btnGerarPacoteDemo.Visible = false;
+                string tag = tvHome.SelectedNode.Tag as string;
+
+                if (!string.IsNullOrEmpty(tag))
+                {
+                    switch (tag)
+                    {
+                        case "AtualizarDemo":
+                            btnGerarPacoteDemo.Visible = true;
+                            break;
+                        case "Parametros":
+                            frmParametros _frmParametros = new();
+
+                            _frmParametros.Show();
+                            this.Hide();
+                            break;
+                        default:
+                            btnGerarPacoteDemo.Visible = false;
+                            break;
+                    }
+                }
             }
         }
 
@@ -39,7 +54,7 @@ namespace auxiliador
             {
                 try
                 {
-                    Directory.Delete(releaseDirectory, true); // true permite excluir subdiretórios e arquivos
+                    Directory.Delete(releaseDirectory, true);
 
                     progressBarGeraPacote.Visible = true;
                     progressBarGeraPacote.Value = 70;

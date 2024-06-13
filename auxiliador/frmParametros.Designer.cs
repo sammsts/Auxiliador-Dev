@@ -66,7 +66,7 @@
             linkHome.AutoSize = true;
             linkHome.Location = new Point(612, 15);
             linkHome.Name = "linkHome";
-            linkHome.Size = new Size(37, 15);
+            linkHome.Size = new Size(40, 15);
             linkHome.TabIndex = 3;
             linkHome.TabStop = true;
             linkHome.Text = "Home";
@@ -84,6 +84,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "frmParametros";
             Text = "Parâmetros";
+            TopMost = true;
             ResumeLayout(false);
             PerformLayout();
         }

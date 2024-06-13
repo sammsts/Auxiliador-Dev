@@ -60,18 +60,18 @@
             txtboxUsuarioLogin.Location = new Point(254, 105);
             txtboxUsuarioLogin.Margin = new Padding(3, 2, 3, 2);
             txtboxUsuarioLogin.Name = "txtboxUsuarioLogin";
+            txtboxUsuarioLogin.PlaceholderText = "User";
             txtboxUsuarioLogin.Size = new Size(182, 23);
             txtboxUsuarioLogin.TabIndex = 2;
-            txtboxUsuarioLogin.Text = "User";
             // 
             // txtboxSenhaLogin
             // 
             txtboxSenhaLogin.Location = new Point(254, 130);
             txtboxSenhaLogin.Margin = new Padding(3, 2, 3, 2);
             txtboxSenhaLogin.Name = "txtboxSenhaLogin";
+            txtboxSenhaLogin.PlaceholderText = "Password";
             txtboxSenhaLogin.Size = new Size(182, 23);
             txtboxSenhaLogin.TabIndex = 3;
-            txtboxSenhaLogin.Text = "Password";
             // 
             // frmLogin
             // 
@@ -84,7 +84,7 @@
             Controls.Add(btnLogin);
             Margin = new Padding(3, 2, 3, 2);
             Name = "frmLogin";
-            Text = "The top one Brazil auxiliador";
+            Text = "The top one Brazil auxiliador de devs da Abase Sistemas";
             Load += frmLogin_Load;
             ResumeLayout(false);
             PerformLayout();
